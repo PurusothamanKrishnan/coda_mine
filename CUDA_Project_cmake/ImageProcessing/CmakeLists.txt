@@ -1,0 +1,31 @@
+#-----------
+# Add new subdirectories here
+find_package(CUDA REQUIRED)
+
+#addSubDir("Source")
+addSubDirectory("Source")
+if(CUDA_FOUND) 
+
+  #set(CUDA_GENERATED_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR})  
+  #set(CUDA_NVCC_FLAGS)
+  #list(APPEND CUDA_NVCC_FLAGS "-arch=sm_50;")
+  
+  #list(APPEND CUDA_NVCC_FLAGS "--device")
+  #set(CUDA_HOST_COMPILER ${CMAKE_CXX_COMPILER})
+  #set(BUILD_SHARED_LIBS OFF)
+  #set(CUDA_SEPARABLE_COMPILATION ON)
+  #set(CUDA_64_BIT_DEVICE_CODE OFF)
+  #set(CUDA_HOST_COMPILATION_CPP ON)
+  #set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS} -rdc=true)
+  #include_directories(${CUDA_INCLUDE_DIRS}
+  includePath(${CUDA_INCLUDE_DIRS})
+  set (CUDA_ATTACH_VS_BUILD_RULE_TO_CUDA_FILE OFF)
+ 
+endif()
+#-----------
+
+# Add OpenCV libraries here
+set (ocvLibs opencv_video231 opencv_calib3d231 opencv_ts231 opencv_objdetect231 opencv_ml231 opencv_imgproc231 opencv_highgui231 opencv_gpu231 opencv_flann231 opencv_features2d231 opencv_core231 opencv_contrib231)
+addOpenCVLIbraries(${ocvLibs})
+addCUDALibs(cudart)
+createProjectCUDA("--force")	# Must be at the end

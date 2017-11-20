@@ -1,0 +1,35 @@
+
+#-----------
+
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+
+set(CPPFILES
+  ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/imageOperations.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/CUDA_support.cpp
+  )
+set(CUFILES
+  ${CMAKE_CURRENT_SOURCE_DIR}/colorConversion.cu
+  ${CMAKE_CURRENT_SOURCE_DIR}/cropImage.cu
+  ${CMAKE_CURRENT_SOURCE_DIR}/resize.cu
+  ${CMAKE_CURRENT_SOURCE_DIR}/sobel.cu
+  )
+
+set(HFILES_PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/common_structs.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/CUDA_support.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/imageOperations.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/konstantsHost.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/utils.h  
+  )
+ 
+#addGroup("ImageProcessing" ${HFILES_PUBLIC} ${CUFILES} ${CPPFILES})
+addSources(${HFILES_PUBLIC} ${CPPFILES})
+addCUDASources(${CUFILES})
+
+
+
+  
+
+
+

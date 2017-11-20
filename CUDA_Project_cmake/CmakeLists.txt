@@ -1,0 +1,31 @@
+cmake_minimum_required(VERSION 2.8)
+
+include("cmakeSupportFunctions/CMakeLists.txt")	# some useful cmake functions
+
+# OpenCV
+#include_directories(
+#		"${OPENCV_DEBUG}/build/include";	
+#)
+includePath("${OPENCV_DEBUG}/opencv/build/include")
+
+
+# Defines
+add_definitions(-DWIN32)
+set(CMAKE_SUPPRESS_REGENERATION TRUE)
+
+if (NOT "${CPP11}" STREQUAL "")  #ie if it has been defined (either true or false)
+  add_definitions(-DCPP11=${CPP11})
+  MESSAGE("Adding compiler flag CPP11='${CPP11}'")
+else()
+  MESSAGE("Compiler flag CPP11 not set")
+endif()
+
+
+# Parse common
+addProject("ImageProcessing")
+
+
+
+
+set (CUDA_ATTACH_VS_BUILD_RULE_TO_CUDA_FILE OFF)
+project(CUDA_OPENCV)		# This is the name VS will use for the solution comprising all projects
